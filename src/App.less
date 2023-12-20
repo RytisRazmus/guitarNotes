@@ -1,0 +1,124 @@
+@neckWidth: 270px;
+
+body {
+  margin: 0;
+}
+
+@keyframes error {
+  50% {
+    background-color: rgba(255, 0, 0, 0.514);;
+  }
+}
+
+.error {
+  animation: error 200ms step-start 0s infinite;
+}
+
+
+
+.wrapper {
+  width: 100%;
+  height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr @neckWidth 1fr;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fretboard {
+  height: 100%;
+  width: @neckWidth;
+  background-color: #303030;
+  margin: 0 auto;
+  position: relative;
+
+  .string {
+    width: 0.5rem;
+    height: 100%;
+    background-color: #696969;
+    margin-left: 15%;
+    z-index: 1;
+
+    &.selected {
+      background-color: yellow;
+      cursor: pointer;
+    }
+
+    &:first-of-type {
+      margin-left: 0.5rem;
+    }
+
+    &:last-of-type {
+      margin-right: 0.5rem;
+      margin-left: auto;
+    }
+  }
+
+  .circle {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    margin: 0 auto;
+    background-color: #c9c9c9;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .ladas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-top: 0.3rem solid #c9c9c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #303030;
+  }
+}
+
+.note-selector {
+  flex-direction: column;
+  gap: 0.5rem;
+
+  @noteHeight: 3rem;
+
+  .note {
+    width: @noteHeight;
+    height: @noteHeight;
+    line-height: @noteHeight;
+    background-color: #303030;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 2px 4px 10px 3px rgba(0,0,0,0.07);
+
+    &:hover {
+      background-color: orange;
+    }
+  }
+}
+
+.last-note {
+  background-color: green;
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 24px;
+  box-shadow: 2px 4px 10px 3px rgba(0,0,0,0.07);
+
+  &.incorrect {
+    background-color: rgba(255, 0, 0, 0.514);
+  }
+}
