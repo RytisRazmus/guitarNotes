@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
-import { strings } from "./strings";
 
 type Dots = Record<number, number>;
 
 const dots: Dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
 
-const notes = strings[1].notes;
+const noteButtons = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
 
 function App() {
   const [note, setNote] = useState<Note>(generateRandomNote());
@@ -92,7 +91,7 @@ function App() {
         })}
       </div>
       <div className="note-selector center">
-        {notes.map((note) => (
+        {noteButtons.map((note) => (
           <div
             className="note"
             onClick={() => handleNoteClick(note)}
