@@ -1,20 +1,49 @@
 import React, { useState } from "react";
 import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
+import { RangeSelector } from "./rangeSelector";
 
 type Dots = Record<number, number>;
 
 const dots: Dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
 
-const noteButtons = ["c", "c#", "d", "d#", "e", "f", "f#", "g", "g#", "a", "a#", "b"];
+const noteButtons = [
+  "c",
+  "c#",
+  "d",
+  "d#",
+  "e",
+  "f",
+  "f#",
+  "g",
+  "g#",
+  "a",
+  "a#",
+  "b",
+];
+
+export type NoteRange = {
+  from: number;
+  to: number
+}
 
 function App() {
-  const [note, setNote] = useState<Note>(generateRandomNote());
+  const [range, setRange] = useState<NoteRange>({
+    from: 1,
+    to: 12,
+  });
+  const [note, setNote] = useState<Note>(generateRandomNote(range.from, range.to));
   const [guessResult, setGuessResult] = useState("");
+
   const [lastNote, setLastNote] = useState({
     note: "",
     correct: true,
   });
+
+  function handleSetRange(noteRange: NoteRange) {
+    setRange(noteRange);
+    generateRandomNote(range.from, range.to)
+  }
 
   function toggleError() {
     setGuessResult("error");
@@ -31,12 +60,13 @@ function App() {
       note: note.note,
       correct: selectedNote === note.note,
     });
-    setNote(generateRandomNote());
+    setNote(generateRandomNote(range.from, range.to));
   }
 
   return (
     <div className={`wrapper ${guessResult}`}>
       <div className="center">
+        <RangeSelector noteRange={range} handleSetRange={handleSetRange} />
         {lastNote.note !== "" && (
           <div className={`last-note ${!lastNote.correct && "incorrect"}`}>
             {lastNote.note}
