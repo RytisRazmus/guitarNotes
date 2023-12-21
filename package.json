@@ -1,6 +1,6 @@
 {
   "name": "vite-project",
-  "homepage": "https://rytisrazmus.github.io/guitarNotes",
+  "homepage": "https://rytisrazmus.github.io/guitarNotes/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "random": "^4.1.0",
