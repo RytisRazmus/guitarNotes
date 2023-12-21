@@ -46,15 +46,15 @@ function App() {
       </div>
 
       <div className="fretboard">
-        {Array.from(Array(13)).map((_, index) => {
-          const number = 8 * index;
+        {Array.from(Array(12)).map((_, index) => {
+          const number = 8.33 * index;
           return (
             <React.Fragment key={crypto.randomUUID()}>
               <div
                 key={crypto.randomUUID()}
                 style={{
                   top: `${number}%`,
-                  height: `8%`,
+                  height: `8.33%`,
                 }}
                 className="ladas"
               >
