@@ -3,7 +3,6 @@ import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
 import { RangeSelector } from "./RangeSelector";
 
-
 type Dots = Record<number, number>;
 
 const dots: Dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
@@ -25,15 +24,17 @@ const noteButtons = [
 
 export type NoteRange = {
   from: number;
-  to: number
-}
+  to: number;
+};
 
 function App() {
   const [range, setRange] = useState<NoteRange>({
     from: 1,
     to: 12,
   });
-  const [note, setNote] = useState<Note>(generateRandomNote(range.from, range.to));
+  const [note, setNote] = useState<Note>(
+    generateRandomNote(range.from, range.to)
+  );
   const [guessResult, setGuessResult] = useState("");
 
   const [lastNote, setLastNote] = useState({
@@ -43,7 +44,7 @@ function App() {
 
   function handleSetRange(noteRange: NoteRange) {
     setRange(noteRange);
-    generateRandomNote(range.from, range.to)
+    generateRandomNote(range.from, range.to);
   }
 
   function toggleError() {

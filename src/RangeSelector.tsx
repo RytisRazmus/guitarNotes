@@ -6,7 +6,10 @@ interface RangeSelectorProps {
   noteRange: NoteRange;
 }
 
-export const RangeSelector = ({ handleSetRange, noteRange }: RangeSelectorProps) => {
+export const RangeSelector = ({
+  handleSetRange,
+  noteRange,
+}: RangeSelectorProps) => {
   const [open, setOpen] = useState(false);
   const toRef = useRef<HTMLInputElement>(null);
   const fromRef = useRef<HTMLInputElement>(null);
@@ -22,8 +25,11 @@ export const RangeSelector = ({ handleSetRange, noteRange }: RangeSelectorProps)
       to < 1 ||
       from >= to ||
       !from ||
-      !to
-    ) {        
+      !to ||
+      isNaN(from) ||
+      isNaN(to)
+    ) {
+      setOpen(false);
       return;
     }
 
@@ -39,8 +45,19 @@ export const RangeSelector = ({ handleSetRange, noteRange }: RangeSelectorProps)
       <dialog className="dialog" open={open}>
         <p>Greetings, one and all!</p>
         <form method="dialog">
-          <input defaultValue={noteRange.from} ref={fromRef} type="number" min={1} max={11} />
-          <input defaultValue={noteRange.to}  ref={toRef} type="number" max={12} />
+          <input
+            defaultValue={noteRange.from}
+            ref={fromRef}
+            type="number"
+            min={1}
+            max={11}
+          />
+          <input
+            defaultValue={noteRange.to}
+            ref={toRef}
+            type="number"
+            max={12}
+          />
           <button onClick={handleSave}>Save</button>
         </form>
       </dialog>
