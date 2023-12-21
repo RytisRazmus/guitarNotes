@@ -3,7 +3,9 @@ import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
 import { strings } from "./strings";
 
-const dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
+type Dots = Record<number, number>
+
+const dots: Dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
 
 const notes = strings[1].notes;
 
