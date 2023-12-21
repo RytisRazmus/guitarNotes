@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
-import { RangeSelector } from "./rangeSelector";
+import { RangeSelector } from "./RangeSelector";
+
 
 type Dots = Record<number, number>;
 
