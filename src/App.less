@@ -122,3 +122,25 @@ body {
     background-color: rgba(255, 0, 0, 0.514);
   }
 }
+
+@media screen and (max-width: 500px) {
+  @neckWidth: 220px;
+  .wrapper {
+    grid-template-columns: 1fr @neckWidth 1fr;
+  }
+  .fretboard {
+    width: @neckWidth;
+
+    .string {
+      width: 0.4rem;
+    }
+
+    &:first-of-type {
+      margin-left: 0.2rem;
+    }
+
+    &:last-of-type {
+      margin-right: 0.2rem;
+    }
+  }
+}

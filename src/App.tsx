@@ -3,7 +3,7 @@ import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
 import { strings } from "./strings";
 
-type Dots = Record<number, number>
+type Dots = Record<number, number>;
 
 const dots: Dots = { [2]: 2, [4]: 4, [6]: 6, [8]: 8, [11]: 11 };
 
@@ -69,11 +69,18 @@ function App() {
                   ></div>
                 ))}
               </div>
+              <div
+                style={{
+                  top: `99.5%`,
+                  height: `0.5%`,
+                }}
+                className="ladas"
+              ></div>
               {dots[index] !== undefined && (
                 <div
                   key={crypto.randomUUID()}
                   style={{
-                    top: `${number + 4}%`,
+                    top: `${number + 3.3}%`,
                   }}
                   className="circle"
                 >
