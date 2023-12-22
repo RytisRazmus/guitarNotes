@@ -34,6 +34,9 @@ body {
   background-color: #303030;
   margin: 0 auto;
   position: relative;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 
   .string {
     width: 0.5rem;
@@ -69,7 +72,7 @@ body {
     text-align: center;
   }
 
-  .ladas {
+  .fret {
     position: absolute;
     left: 0;
     right: 0;
@@ -146,6 +149,44 @@ body {
 
 .dialog {
   z-index: 10;
+  width: 300px;
+  height: 250px;
+  border-radius: 8px;
+  background-color: #e54545;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  input {
+    font-size: 16px;
+    height: 2rem;
+    outline-width: 0;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding: 0 8px;
+  }
+
+  button {
+    margin-top: 1rem;
+    font-size: 16px;
+    height: 2.2rem;
+    border-radius: 8px;
+    outline-width: 0;
+    border: 1px solid lightgray;
+
+    &:focus,
+    &:hover {
+      background-color: lightgray;
+    }
+  }
 
   form {
     display: flex;
@@ -157,4 +198,14 @@ body {
 #rangeBtn {
   position: fixed;
   top: 1rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  background-color: orange;
+  color: white;
+
+  &:focus {
+    background-color: #e54545;
+  }
 }

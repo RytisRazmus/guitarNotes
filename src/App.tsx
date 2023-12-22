@@ -28,6 +28,7 @@ export type NoteRange = {
 };
 
 function App() {
+  const [open, setOpen] = useState(false);
   const [range, setRange] = useState<NoteRange>({
     from: 1,
     to: 12,
@@ -44,7 +45,7 @@ function App() {
 
   function handleSetRange(noteRange: NoteRange) {
     setRange(noteRange);
-    generateRandomNote(range.from, range.to);
+    setNote(generateRandomNote(noteRange.from, noteRange.to));
   }
 
   function toggleError() {
@@ -66,74 +67,85 @@ function App() {
   }
 
   return (
-    <div className={`wrapper ${guessResult}`}>
-      <div className="center">
-        <RangeSelector noteRange={range} handleSetRange={handleSetRange} />
-        {lastNote.note !== "" && (
-          <div className={`last-note ${!lastNote.correct && "incorrect"}`}>
-            {lastNote.note}
-          </div>
-        )}
-      </div>
+    <>
+      <RangeSelector
+        open={open}
+        setOpen={setOpen}
+        noteRange={range}
+        handleSetRange={handleSetRange}
+      />
+      <div id="wrapper" className={`wrapper ${guessResult}`}>
+        <div className="center">
+          <button id="rangeBtn" onClick={() => setOpen(true)}>
+            Range
+          </button>
 
-      <div className="fretboard">
-        {Array.from(Array(12)).map((_, index) => {
-          const number = 8.33 * index;
-          return (
-            <React.Fragment key={crypto.randomUUID()}>
-              <div
-                key={crypto.randomUUID()}
-                style={{
-                  top: `${number}%`,
-                  height: `8.33%`,
-                }}
-                className="ladas"
-              >
-                {Array.from(Array(6)).map((_, stringIndex) => (
-                  <div
-                    key={crypto.randomUUID()}
-                    className={`string ${
-                      note.string === stringIndex && index === note.ladas
-                        ? "selected"
-                        : ""
-                    }`}
-                  ></div>
-                ))}
-              </div>
-              <div
-                style={{
-                  top: `99.5%`,
-                  height: `0.5%`,
-                }}
-                className="ladas"
-              ></div>
-              {dots[index] !== undefined && (
+          {lastNote.note !== "" && (
+            <div className={`last-note ${!lastNote.correct && "incorrect"}`}>
+              {lastNote.note}
+            </div>
+          )}
+        </div>
+
+        <div className="fretboard">
+          {Array.from(Array(12)).map((_, index) => {
+            const number = 8.33 * index;
+            return (
+              <React.Fragment key={crypto.randomUUID()}>
                 <div
                   key={crypto.randomUUID()}
                   style={{
-                    top: `${number + 3.3}%`,
+                    top: `${number}%`,
+                    height: `8.33%`,
                   }}
-                  className="circle"
+                  className="fret"
                 >
-                  {index + 1}
+                  {Array.from(Array(6)).map((_, stringIndex) => (
+                    <div
+                      key={crypto.randomUUID()}
+                      className={`string ${
+                        note.string === stringIndex && index === note.fret
+                          ? "selected"
+                          : ""
+                      }`}
+                    ></div>
+                  ))}
                 </div>
-              )}
-            </React.Fragment>
-          );
-        })}
+                <div
+                  style={{
+                    top: `99.5%`,
+                    height: `0.5%`,
+                  }}
+                  className="fret"
+                ></div>
+                {dots[index] !== undefined && (
+                  <div
+                    key={crypto.randomUUID()}
+                    style={{
+                      top: `${number + 3.3}%`,
+                    }}
+                    className="circle"
+                  >
+                    {index + 1}
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
+        <div className="note-selector center">
+          {noteButtons.map((note) => (
+            <div
+              className="note"
+              onClick={() => handleNoteClick(note)}
+              key={crypto.randomUUID()}
+            >
+              {note}
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="note-selector center">
-        {noteButtons.map((note) => (
-          <div
-            className="note"
-            onClick={() => handleNoteClick(note)}
-            key={crypto.randomUUID()}
-          >
-            {note}
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
 
