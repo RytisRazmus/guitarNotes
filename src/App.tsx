@@ -77,7 +77,7 @@ function App() {
       <div id="wrapper" className={`wrapper ${guessResult}`}>
         <div className="center">
           <button id="rangeBtn" onClick={() => setOpen(true)}>
-            Range
+            {range.from}-{range.to}
           </button>
 
           {lastNote.note !== "" && (
