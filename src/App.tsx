@@ -34,7 +34,7 @@ function App() {
     to: 12,
   });
   const [note, setNote] = useState<Note>(
-    generateRandomNote(range.from, range.to)
+    generateRandomNote(range.from, range.to, "")
   );
   const [guessResult, setGuessResult] = useState("");
 
@@ -45,7 +45,7 @@ function App() {
 
   function handleSetRange(noteRange: NoteRange) {
     setRange(noteRange);
-    setNote(generateRandomNote(noteRange.from, noteRange.to));
+    setNote(generateRandomNote(noteRange.from, noteRange.to, note.note));
   }
 
   function toggleError() {
@@ -63,7 +63,7 @@ function App() {
       note: note.note,
       correct: selectedNote === note.note,
     });
-    setNote(generateRandomNote(range.from, range.to));
+    setNote(generateRandomNote(range.from, range.to, note.note));
   }
 
   return (
