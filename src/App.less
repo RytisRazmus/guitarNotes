@@ -48,7 +48,6 @@ body {
     &.selected {
       background-color: yellow;
       box-shadow: 0px -1px 24px 3px yellow;
-      cursor: pointer;
     }
 
     &:first-of-type {
@@ -112,6 +111,7 @@ body {
 
 .last-note {
   background-color: #41cb41;
+  box-shadow: 0px -1px 9px 1px #41cb41;
   color: white;
   width: 3rem;
   height: 3rem;
@@ -119,10 +119,10 @@ body {
   text-align: center;
   border-radius: 50%;
   font-size: 24px;
-  box-shadow: 2px 4px 10px 3px rgba(0, 0, 0, 0.07);
 
   &.incorrect {
     background-color: rgba(255, 0, 0, 0.514);
+    box-shadow: 0px -1px 9px 1px rgba(255, 0, 0, 0.514);
   }
 }
 
@@ -159,6 +159,7 @@ body {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
+  border-width: 1px;
 
   h2 {
     font-size: 20px;
@@ -183,6 +184,7 @@ body {
     outline-width: 0;
     border: 1px solid lightgray;
     color: black;
+    cursor: pointer;
 
     &:focus,
     &:hover {
@@ -202,12 +204,15 @@ body {
   top: 1rem;
   width: 3rem;
   height: 3rem;
-  border-radius: 8px;
-  border: 1px solid lightgray;
+  border-radius: 50%;
+  border: none;
   background-color: orange;
+  box-shadow: 0px -1px 9px 1px orange;
   color: white;
+  cursor: pointer;
 
-  &:focus {
+  &:focus, &:hover {
     background-color: #e54545;
+    box-shadow: 0px -1px 9px 1px #e54545;
   }
 }
