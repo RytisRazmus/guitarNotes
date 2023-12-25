@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
-import { RangeSelector } from "./RangeSelector";
+import { SettingsModal } from "./SettingsModal";
+import { useSettings } from "./hooks/useSettings";
 
 type Dots = Record<number, number>;
 
@@ -29,30 +30,32 @@ export type NoteRange = {
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [range, setRange] = useState<NoteRange>({
-    from: 1,
-    to: 12,
-  });
-  const [note, setNote] = useState<Note>(
-    generateRandomNote(range.from, range.to, "")
+  const settings = useSettings((noteRange) =>
+    setNote(
+      generateRandomNote(
+        noteRange.from,
+        noteRange.to,
+        note.note,
+        activeStringsValues
+      )
+    )
   );
-  const [guessResult, setGuessResult] = useState("");
+  const { range, activeStringsValues } = settings;
+
+  const [note, setNote] = useState<Note>(
+    generateRandomNote(range.from, range.to, "", activeStringsValues)
+  );
 
   const [lastNote, setLastNote] = useState({
     note: "",
     correct: true,
   });
 
-  function handleSetRange(noteRange: NoteRange) {
-    setRange(noteRange);
-    setNote(generateRandomNote(noteRange.from, noteRange.to, note.note));
-  }
-
   function toggleError() {
-    setGuessResult("error");
+    document.body.classList.add("error");
 
     setTimeout(() => {
-      setGuessResult("");
+      document.body.classList.remove("error");
     }, 300);
   }
 
@@ -63,18 +66,15 @@ function App() {
       note: note.note,
       correct: selectedNote === note.note,
     });
-    setNote(generateRandomNote(range.from, range.to, note.note));
+    setNote(
+      generateRandomNote(range.from, range.to, note.note, activeStringsValues)
+    );
   }
 
   return (
     <>
-      <RangeSelector
-        open={open}
-        setOpen={setOpen}
-        noteRange={range}
-        handleSetRange={handleSetRange}
-      />
-      <div id="wrapper" className={`wrapper ${guessResult}`}>
+      <SettingsModal open={open} setOpen={setOpen} settings={settings} />
+      <div id="wrapper" className="wrapper">
         <div className="center">
           <button id="rangeBtn" onClick={() => setOpen(true)}>
             {range.from}-{range.to}

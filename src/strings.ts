@@ -1,6 +1,7 @@
 export const strings = [
     {
         name: "e",
+        altName: "e6",
         notes: [
             "e",
             "f",
@@ -19,6 +20,7 @@ export const strings = [
     },
     {
         name: "a",
+        altName: 'a',
         notes: [
             "a",
             "a#",
@@ -37,6 +39,7 @@ export const strings = [
     },
     {
         name: "d",
+        altName: "d",
         notes: [
             "d",
             "d#",
@@ -55,6 +58,7 @@ export const strings = [
     },
     {
         name: "g",
+        altName: 'g',
         notes: [
             "g",
             "g#",
@@ -73,6 +77,7 @@ export const strings = [
     },
     {
         name: "b",
+        altName: "b",
         notes: [
             "b",
             "c",
@@ -91,6 +96,7 @@ export const strings = [
     },
     {
         name: "e",
+        altName: 'e1',
         notes: [
             "e",
             "f",

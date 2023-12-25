@@ -151,7 +151,6 @@ body {
 .dialog {
   z-index: 10;
   width: 300px;
-  height: 250px;
   border-radius: 8px;
   background-color: #e54545;
   color: white;
@@ -197,6 +196,32 @@ body {
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  .string-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    .modal-note {
+      width: 2rem;
+      height: 2rem;
+      background-color: #41cb41;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: orange;
+      }
+
+      &.deactivated {
+        background-color: orange;
+      }
+    }
+  }
 }
 
 #rangeBtn {
@@ -211,7 +236,8 @@ body {
   color: white;
   cursor: pointer;
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: #e54545;
     box-shadow: 0px -1px 9px 1px #e54545;
   }
