@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import "./App.less";
 import { Note, generateRandomNote } from "./generateRandomNote";
 import { SettingsModal } from "./SettingsModal";
