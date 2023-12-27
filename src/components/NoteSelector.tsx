@@ -1,14 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
 
 import { generateRandomNote } from "../utils/generateRandomNote";
-import { Settings } from "../hooks/useSettings";
 import { NoteGenerator } from "../hooks/useNoteGenerator";
 
 type NoteSelectorProps = Pick<
   NoteGenerator,
   "note" | "setNote" | "setLastNote"
 > &
-  Pick<Settings, "range" | "activeStringsValues">;
+  Pick<NoteGenerator, "range" | "activeStringsValues">;
 
 const noteButtons = [
   "c",
