@@ -1,5 +1,6 @@
 import random from 'random'
-import { strings } from './strings';
+
+import { strings } from '../strings';
 
 export interface Note {
     fret: number;

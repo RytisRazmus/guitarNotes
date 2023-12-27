@@ -1,16 +1,23 @@
 import { useEffect, useMemo, useRef } from "react";
-import { Settings, StringNote } from "./hooks/useSettings";
+import { v4 as uuidv4 } from "uuid";
+
+import { Settings } from "./hooks/useSettings";
+import { NoteGenerator, StringNote } from "./hooks";
 
 interface RangeSelectorProps {
   settings: Settings;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  activeStrings: NoteGenerator["activeStrings"];
+  range: NoteGenerator["range"];
 }
 
 export const SettingsModal = ({
-  settings: { saveSettings, range, activeStrings, handleStringClick },
+  settings: { saveSettings, handleStringClick },
   open,
   setOpen,
+  activeStrings,
+  range,
 }: RangeSelectorProps) => {
   const toRef = useRef<HTMLInputElement>(null);
   const fromRef = useRef<HTMLInputElement>(null);
@@ -22,7 +29,7 @@ export const SettingsModal = ({
           className={`modal-note ${
             !activeStrings[key as keyof StringNote].active && "deactivated"
           }`}
-          key={crypto.randomUUID()}
+          key={uuidv4()}
           onClick={() => handleStringClick(key as keyof StringNote)}
         >
           {activeStrings[key as keyof StringNote].value.substring(0, 1)}
